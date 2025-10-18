@@ -1,0 +1,1 @@
+https://github.com/rishabh21g/mailchimp.git
