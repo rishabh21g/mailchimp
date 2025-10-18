@@ -2,8 +2,8 @@ import React from 'react'
 
 const IndexLayout = () => {
   return (
-    <div>IndexLayout</div>
+    <button className='btn btn-primary'>IndexLayout</button>
   )
-}
+} 
 
 export default IndexLayout
