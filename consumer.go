@@ -13,9 +13,13 @@ func EmailWorker(id int, ch chan Recipient, wg *sync.WaitGroup) error {
 	for recipient := range ch {
 		smtpHost := "localhost"
 		smtpPort := "1025"
-		formattedMsg := fmt.Sprintf("To: %s\r\nSUbject: Test Email\r\n\r\n%s\r\n", recipient.Email, "Just testing email")
-		message := []byte(formattedMsg)
-		err := smtp.SendMail(smtpHost+":"+smtpPort, nil, "rishabhiitm@zohomail.in", []string{recipient.Email}, message)
+		message, err := ExecuteTemplate(recipient)
+		if err != nil {
+			fmt.Printf("Worker %d Error parsing template %s", id, recipient.Email)
+			continue
+
+		}
+		err = smtp.SendMail(smtpHost+":"+smtpPort, nil, "rishabhiitm@zohomail.in", []string{recipient.Email}, []byte(message))
 		if err != nil {
 			log.Fatal(err)
 			return err
@@ -28,3 +32,7 @@ func EmailWorker(id int, ch chan Recipient, wg *sync.WaitGroup) error {
 
 	return nil
 }
+
+// Simple text
+// formattedMsg := fmt.Sprintf("To: %s\r\nSUbject: Test Email\r\n\r\n%s\r\n", recipient.Email, "Just testing email")
+// message := []byte(formattedMsg)
