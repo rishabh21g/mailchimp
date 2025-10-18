@@ -1,7 +1,21 @@
 package main
 
+import (
+	"sync"
+)
+
 func main() {
+	var wg sync.WaitGroup
 	recipientChannel := make(chan Recipient) // unbuffered channel
-	LoadRecipients("./email.csv", recipientChannel)
-	defer close(recipientChannel) // Close the channel after loading all recipients
+	go LoadRecipients("./email.csv", recipientChannel)
+
+	workers := 5
+	for i := 0; i <= workers; i++ {
+		wg.Add(1)
+		go EmailWorker(i, recipientChannel, &wg)
+
+	}
+	wg.Wait()
+	// time.Sleep(time.Second)       // temporary solution for completing the task of goroutines
+
 }

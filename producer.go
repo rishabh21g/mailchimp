@@ -7,7 +7,7 @@ import (
 
 // Producer function to load recipients from a CSV file
 func LoadRecipients(filepath string, ch chan Recipient) error {
-
+	defer close(ch)
 	file, err := os.Open(filepath)
 	if err != nil {
 		return err
@@ -22,8 +22,9 @@ func LoadRecipients(filepath string, ch chan Recipient) error {
 		return err
 	}
 	for _, record := range records[1:] {
-
+		// fmt.Println(record)
 		//After getting this send through channel to consumer
+
 		ch <- Recipient{
 			Name:  record[0],
 			Email: record[1],
