@@ -10,18 +10,18 @@ A high-performance email sending system built with Go that demonstrates the prod
 
 ### Architecture & Data Flow
 <p align="center">
-  <img src="images/architecture.png" alt="Architecture Diagram" width="800">
+  <img src="https://github.com/rishabh21g/mailchimp/blob/main/images/MailchimpArch.png" alt="Architecture Diagram" width="800">
 </p>
 
 ### Mailpit Dashboard - All Emails Delivered
 <p align="center">
-  <img src="images/mailpit-inbox.png" alt="Mailpit Inbox" width="800">
+  <img src="https://github.com/rishabh21g/mailchimp/blob/main/images/MailchimpGo.png" alt="Mailpit Inbox" width="800">
 </p>
 *Successfully sent 20 personalized emails to all recipients*
 
 ### Email Preview - Personalized Content
 <p align="center">
-  <img src="images/email-preview.png" alt="Email Preview" width="800">
+  <img src="https://github.com/rishabh21g/mailchimp/blob/main/images/Inbox_temp.png" alt="Email Preview" width="800">
 </p>
 *Dynamic HTML template with recipient-specific data (Name and Email)*
 
