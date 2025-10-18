@@ -6,6 +6,25 @@ A high-performance email sending system built with Go that demonstrates the prod
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
 
+## 📸 Screenshots
+
+### Architecture & Data Flow
+<p align="center">
+  <img src="images/architecture.png" alt="Architecture Diagram" width="800">
+</p>
+
+### Mailpit Dashboard - All Emails Delivered
+<p align="center">
+  <img src="images/mailpit-inbox.png" alt="Mailpit Inbox" width="800">
+</p>
+*Successfully sent 20 personalized emails to all recipients*
+
+### Email Preview - Personalized Content
+<p align="center">
+  <img src="images/email-preview.png" alt="Email Preview" width="800">
+</p>
+*Dynamic HTML template with recipient-specific data (Name and Email)*
+
 ## 🎯 Features
 
 - ✨ **Concurrent Email Processing** - Multiple worker goroutines for parallel email sending
@@ -87,18 +106,33 @@ Sarah Johnson,Sarah.Johnson@email.com
 go run .
 ```
 
+### 5. Expected Output
+
+```bash
+Worker 1: Sending email to: John.Smith@example.com
+Worker 2: Sending email to: Sarah.Johnson@email.com
+Worker 3: Sending email to: Michael.Brown@test.com
+Worker 4: Sending email to: Emily.Davis@sample.org
+Worker 5: Sending email to: David.Wilson@demo.net
+...
+```
+
 ## 📁 Project Structure
 
 ```
 mailchimp/
-├── main.go           # Entry point and worker pool initialization
-├── producer.go       # CSV reader and channel producer
-├── consumer.go       # Email worker implementation
-├── template.go       # Template parsing and execution
-├── types.go          # Data structures
-├── email.tmpl        # HTML email template
-├── email.csv         # Recipient data
-└── README.md         # Project documentation
+├── images/               # Screenshots and diagrams
+│   ├── architecture.png
+│   ├── mailpit-inbox.png
+│   └── email-preview.png
+├── main.go              # Entry point and worker pool initialization
+├── producer.go          # CSV reader and channel producer
+├── consumer.go          # Email worker implementation
+├── template.go          # Template parsing and execution
+├── types.go             # Data structures
+├── email.tmpl           # HTML email template
+├── email.csv            # Recipient data
+└── README.md            # Project documentation
 ```
 
 ## 🎨 Email Template
