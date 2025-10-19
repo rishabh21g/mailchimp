@@ -1,13 +1,16 @@
-package main
+package template
 
 import (
 	"bytes"
 	"html/template"
 	"log"
+
+	"github.com/rishabh21g/mailchimp/internal/types"
 )
 
-func ExecuteTemplate(recp Recipient) (string, error) {
-	temp, err := template.ParseFiles("email.tmpl")
+func ExecuteTemplate(recp types.Recipient) (string, error) {
+
+	temp, err := template.ParseFiles("../../internal/template/email.tmpl")
 	if err != nil {
 		log.Fatal(err)
 		return "", err

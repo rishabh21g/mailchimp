@@ -1,12 +1,16 @@
-package main
+package services
 
 import (
 	"encoding/csv"
+	"fmt"
+
 	"os"
+
+	"github.com/rishabh21g/mailchimp/internal/types"
 )
 
 // Producer function to load recipients from a CSV file
-func LoadRecipients(filepath string, ch chan Recipient) error {
+func LoadRecipients(filepath string, ch chan types.Recipient) error {
 	defer close(ch)
 	file, err := os.Open(filepath)
 	if err != nil {
@@ -22,10 +26,10 @@ func LoadRecipients(filepath string, ch chan Recipient) error {
 		return err
 	}
 	for _, record := range records[1:] {
-		// fmt.Println(record)
+		fmt.Println(record)
 		//After getting this send through channel to consumer
 
-		ch <- Recipient{
+		ch <- types.Recipient{
 			Name:  record[0],
 			Email: record[1],
 		}

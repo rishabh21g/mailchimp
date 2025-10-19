@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"fmt"
@@ -6,14 +6,17 @@ import (
 	"net/smtp"
 	"sync"
 	"time"
+
+	"github.com/rishabh21g/mailchimp/internal/template"
+	"github.com/rishabh21g/mailchimp/internal/types"
 )
 
-func EmailWorker(id int, ch chan Recipient, wg *sync.WaitGroup) error {
+func EmailWorker(id int, ch chan types.Recipient, wg *sync.WaitGroup) error {
 	defer wg.Done()
 	for recipient := range ch {
 		smtpHost := "localhost"
 		smtpPort := "1025"
-		message, err := ExecuteTemplate(recipient)
+		message, err := template.ExecuteTemplate(recipient)
 		if err != nil {
 			fmt.Printf("Worker %d Error parsing template %s", id, recipient.Email)
 			continue
