@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/rishabh21g/mailchimp/internal/handlers"
+	"log/slog"
+
+	"github.com/rishabh21g/mailchimp/internal/database"
 )
 
 func main() {
@@ -16,10 +17,16 @@ func main() {
 	// 	go services.EmailWorker(i, recipientChannel, &wg)
 	// }
 	// wg.Wait()
+    // connect to DB
+	_ , err:= database.Init_DB()
+	if err != nil {
+		slog.Error("Could not connect to Database" , "error" , err)
+	}
+
 	// Gin server code started
-	router := gin.Default()
-	routerAuth := router.Group("/api/v1/auth" )
-	routerAuth.GET("/login",  handlers.LoginHandler )
-	routerAuth.GET("/signup",  handlers.RegisterHandler )
-	router.Run(":3000")
+	// router := gin.Default()
+	// routerAuth := router.Group("/api/v1/auth" )
+	// routerAuth.GET("/login",  handlers.LoginHandler )
+	// routerAuth.GET("/signup",  handlers.RegisterHandler )
+	// router.Run(":3000")
 }
